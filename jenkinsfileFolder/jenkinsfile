@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+        try {
+
+    environment {
+        CI = 'true'
+    }
+    stages {
+        stage('Install') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'npm test'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'npm build'
+             }
+        }
+    }
+}
+        catch (all){
+            echo 'Something failed'
+            // Send email notification
+            emailext (
+                subject:  "Test Failed"
+                body:  "Something failed"
+            )
+
+}
+}
+
