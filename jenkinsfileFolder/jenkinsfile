@@ -1,6 +1,6 @@
 pipeline {
     agent any
-        try {
+//        try {
 
     environment {
         CI = 'true'
@@ -22,15 +22,15 @@ pipeline {
              }
         }
     }
-}
-        catch (all){
-            echo 'Something failed'
-            // Send email notification
-            emailext (
-                subject:  "Test Failed"
-                body:  "Something failed"
-            )
+//}
+//        catch (all){
+//            echo 'Something failed'
+//            // Send email notification
+//            emailext (
+//                subject:  "Test Failed"
+//                body:  "Something failed"
+//            )
 
-}
+//}
 }
 
