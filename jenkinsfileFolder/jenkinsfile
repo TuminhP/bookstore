@@ -5,7 +5,6 @@ pipeline {
         CI = 'true'
     }
     stages {
-
         try {
             stage('Install') {
                 steps {
@@ -23,7 +22,6 @@ pipeline {
                 }
             }
         }
-    
         catch (all){
             echo 'Something failed'
             // Send email notification
