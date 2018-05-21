@@ -27,8 +27,8 @@ pipeline {
             echo 'Something failed'
             // Send email notification
             emailext (
-                subject:  "Test Failed"
-                body:  "Something failed"
+                subject:  "Test Failed",
+                body:  "Something failed"                
             )
 
 }
