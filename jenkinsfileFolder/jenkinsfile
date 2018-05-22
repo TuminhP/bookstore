@@ -1,39 +1,40 @@
 pipeline {
     agent { label 'test' }
     
-        environment {
+    environment {
         CI = 'true'
     }
+    
     stages {
-        try {
-            stage('Install') {
-                steps {
-                    sh 'npm install'
-                }
-            }
-            stage('Test') {
-                steps {
-                    sh 'npm test'
-                }
-            }
-            stage('Build') {
-                steps {
-                    sh 'npm build'
-                }
+        stage('Install') {
+            steps {
+                sh 'npm install'
             }
         }
-        catch (all){
-            echo 'Something failed'
-            // Send email notification
-            emailext (
-                subject:  "Test Failed",
-                body:  "Something failed",
-            // recipientProviders:  [[$class:  ]]
-            )
+        stage('Test') {
+            steps {
+                sh 'npm test'
             }
+        }
+        stage('Build') {
+            steps {
+                sh 'npm build'
+            }
+        }
+    }    
+    
+    post {
+        success {
+            mail to: "phungttuminh@gmail.com", subject: "SUCCESS", body: "Build passed."
+        }
+        failure {
+            mail to: "phungttuminh@gmail.com", subject: "FAILURE", body: "Build failed." 
+        }
+    }
             
 
 }
-}
+
+
 
 
