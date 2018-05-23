@@ -34,8 +34,8 @@ pipeline {
             }
         }
        
-        agent { label 'prod-web' }
         stage('Deploy to prod-web'){
+        agent { label 'prod-web' }
             steps {
                 unstash 'app'
             }
