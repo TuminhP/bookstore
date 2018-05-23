@@ -39,10 +39,7 @@ pipeline {
             mail to: "phungttuminh@gmail.com", subject: "FAILURE", body: "Build failed." 
         }
     }
-            
-
 }
-//Test1
 
 
 
