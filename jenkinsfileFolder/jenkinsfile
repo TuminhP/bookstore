@@ -22,7 +22,9 @@ pipeline {
             }
         }
         stage('Merge and push to Master) {
-            build 'develops project merge master'
+            step {
+                build 'develops project merge master'
+            }
         }
 
     }    
