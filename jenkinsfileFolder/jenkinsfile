@@ -21,9 +21,23 @@ pipeline {
                 sh 'npm build'
             }
         }
+
         stage('Merge and push to Master') {
             steps {
                 build 'CDMergePushtoMaster'
+            }
+        }
+
+        stage('Copy app folder'){
+            steps {
+                stash includes:  '**/app/', name:  'app'        
+            }
+        }
+       
+        agent { label 'prod-web' }
+        stage('Deploy to prod-web'){
+            steps {
+                unstash 'app'
             }
         }
 
@@ -39,5 +53,5 @@ pipeline {
     }
 }
 
-//comment
+
 
