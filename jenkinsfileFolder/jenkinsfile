@@ -21,11 +21,15 @@ pipeline {
                 sh 'npm build'
             }
         }
+        stage('Merge and push to Master) {
+            build 'develops project merge master'
+        }
+
     }    
     
     post {
 //to call a freestyle Jenkins project which will merge and push to the master
-        build 'develops project merge master'
+//        build 'develops project merge master'
         success {
             mail to: "phungttuminh@gmail.com", subject: "SUCCESS", body: "Build passed."
         }
